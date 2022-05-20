@@ -24,10 +24,10 @@ class TicketController extends Controller
         if($validator->fails())
             $response = new Response(json_encode($validator->errors()), 422);
 
-        $model = $data->model;
-        $storage = $data->storage;
+        $modelName = $data->model;
+        $storageName = $data->storage;
         if(!$validator->fails()) {
-            $result = SaveFactory::saveModel($validateData, $model, $storage);
+            $result = SaveFactory::saveModel($validateData, $modelName, $storageName);
             if($result)
                 $response = new Response($result, 200);
             else
